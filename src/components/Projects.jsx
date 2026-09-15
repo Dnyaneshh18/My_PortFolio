@@ -105,10 +105,11 @@ export default function Projects({ onSelectProject }) {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-          gap: '32px'
+          columnGap: '32px',
+          rowGap: '64px'
         }}>
           {filteredProjects.map((project) => (
-            <div key={project.id} style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%' }}>
+            <div key={project.id} style={{ display: 'flex', flexDirection: 'column', gap: '12px', height: '100%' }}>
               
               <div
                 className="tilt-card-wrapper"
