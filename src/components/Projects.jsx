@@ -255,11 +255,13 @@ export default function Projects({ onSelectProject }) {
                           target="_blank" 
                           rel="noreferrer"
                           onClick={(e) => {
+                            e.preventDefault();
                             e.stopPropagation();
                             soundFx.playSuccess();
+                            window.open(project.liveDemo, '_blank');
                           }}
                           className="glass-pill"
-                          style={{ padding: '6px 12px', fontSize: '0.74rem', gap: '6px' }}
+                          style={{ padding: '6px 12px', fontSize: '0.74rem', gap: '6px', zIndex: 10, position: 'relative' }}
                           title="Live Demo"
                         >
                           <ExternalLink size={12} />
@@ -272,11 +274,13 @@ export default function Projects({ onSelectProject }) {
                           target="_blank" 
                           rel="noreferrer"
                           onClick={(e) => {
+                            e.preventDefault();
                             e.stopPropagation();
                             soundFx.playHover();
+                            window.open(project.github, '_blank');
                           }}
                           className="glass-pill"
-                          style={{ padding: '6px 12px', fontSize: '0.74rem', gap: '6px' }}
+                          style={{ padding: '6px 12px', fontSize: '0.74rem', gap: '6px', zIndex: 10, position: 'relative' }}
                           title="GitHub Source"
                         >
                           <GithubIcon size={12} />
