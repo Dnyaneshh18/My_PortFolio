@@ -25,8 +25,12 @@ export default function Projects({ onSelectProject }) {
     ? projects 
     : projects.filter(p => p.categoryKey === activeFilter);
 
+  const [isHoveringFooter, setIsHoveringFooter] = useState(false);
+
   // Tilt card hover handler
   const handleMouseMove = (e) => {
+    if (isHoveringFooter) return; // Freeze tilt if hovering footer
+
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -51,6 +55,7 @@ export default function Projects({ onSelectProject }) {
     if (inner) {
       inner.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0px)';
     }
+    setIsHoveringFooter(false);
   };
 
   return (
@@ -232,7 +237,18 @@ export default function Projects({ onSelectProject }) {
                 </div>
 
                 {/* Quick Card Footer Actions (Outside Clickable Area) */}
-                <div style={{ padding: '0 22px 20px', position: 'relative', zIndex: 9999 }}>
+                <div 
+                  style={{ padding: '0 22px 20px', position: 'relative', zIndex: 9999 }}
+                  onMouseEnter={(e) => {
+                    setIsHoveringFooter(true);
+                    // Force the card to flatten out when hovering the footer to fix 3D hit-testing bugs
+                    const inner = e.currentTarget.closest('.tilt-card-wrapper')?.querySelector('.tilt-card-inner');
+                    if (inner) {
+                      inner.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0px)';
+                    }
+                  }}
+                  onMouseLeave={() => setIsHoveringFooter(false)}
+                >
                   <div style={{ 
                     display: 'flex', 
                     alignItems: 'center', 
