@@ -25,12 +25,8 @@ export default function Projects({ onSelectProject }) {
     ? projects 
     : projects.filter(p => p.categoryKey === activeFilter);
 
-  const [isHoveringFooter, setIsHoveringFooter] = useState(false);
-
   // Tilt card hover handler
   const handleMouseMove = (e) => {
-    if (isHoveringFooter) return; // Freeze tilt if hovering footer
-
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -55,7 +51,6 @@ export default function Projects({ onSelectProject }) {
     if (inner) {
       inner.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0px)';
     }
-    setIsHoveringFooter(false);
   };
 
   return (
@@ -113,207 +108,196 @@ export default function Projects({ onSelectProject }) {
           gap: '32px'
         }}>
           {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="tilt-card-wrapper"
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div 
-                className="glass tilt-card-inner"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  borderRadius: 'var(--radius-lg)',
-                  overflow: 'hidden',
-                  border: project.featured ? '1px solid rgba(99, 102, 241, 0.35)' : '1px solid var(--border-subtle)'
-                }}
+            <div key={project.id} style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%' }}>
+              
+              <div
+                className="tilt-card-wrapper"
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                style={{ flexGrow: 1 }}
               >
-                <div className="spotlight-overlay" />
-                <div className="shimmer-sweep" />
-
-                {/* Main Clickable Area (Opens Modal) */}
                 <div 
-                  onClick={() => {
-                    soundFx.playOpen();
-                    onSelectProject(project);
+                  className="glass tilt-card-inner"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    borderRadius: 'var(--radius-lg)',
+                    overflow: 'hidden',
+                    border: project.featured ? '1px solid rgba(99, 102, 241, 0.35)' : '1px solid var(--border-subtle)',
+                    height: '100%'
                   }}
-                  style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', flexGrow: 1 }}
                 >
-                  {/* Project Image Thumbnail */}
-                  <div style={{ position: 'relative', height: '210px', overflow: 'hidden', background: '#0a0f1e' }}>
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.5s ease'
-                      }}
-                    />
-                    <div style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: 'linear-gradient(to top, rgba(14, 21, 38, 0.95) 0%, rgba(14, 21, 38, 0.3) 60%, transparent 100%)'
-                    }} />
+                  <div className="spotlight-overlay" />
+                  <div className="shimmer-sweep" />
 
-                    {/* Top Badges */}
-                    <div style={{ position: 'absolute', top: '14px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span className="glass-pill" style={{ fontSize: '0.72rem', padding: '4px 10px', background: 'rgba(0, 0, 0, 0.65)' }}>
-                        {project.category}
-                      </span>
+                  {/* Main Clickable Area (Opens Modal) */}
+                  <div 
+                    onClick={() => {
+                      soundFx.playOpen();
+                      onSelectProject(project);
+                    }}
+                    style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', flexGrow: 1 }}
+                  >
+                    {/* Project Image Thumbnail */}
+                    <div style={{ position: 'relative', height: '210px', overflow: 'hidden', background: '#0a0f1e' }}>
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          transition: 'transform 0.5s ease'
+                        }}
+                      />
+                      <div style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(to top, rgba(14, 21, 38, 0.95) 0%, rgba(14, 21, 38, 0.3) 60%, transparent 100%)'
+                      }} />
 
-                      {project.featured && (
-                        <span className="glass-pill" style={{ 
-                          fontSize: '0.72rem', 
-                          padding: '4px 10px', 
-                          borderColor: '#f59e0b', 
-                          color: '#f59e0b',
-                          background: 'rgba(0,0,0,0.65)' 
-                        }}>
-                          <Star size={11} fill="#f59e0b" />
-                          <span>Featured</span>
+                      {/* Top Badges */}
+                      <div style={{ position: 'absolute', top: '14px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span className="glass-pill" style={{ fontSize: '0.72rem', padding: '4px 10px', background: 'rgba(0, 0, 0, 0.65)' }}>
+                          {project.category}
                         </span>
-                      )}
-                    </div>
 
-                    {/* Year & Metrics Pill at bottom of image */}
-                    <div style={{ position: 'absolute', bottom: '12px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                        {project.year}
-                      </span>
-                      {project.metrics && (
-                        <span className="badge-tag" style={{ color: 'var(--accent-primary)', borderColor: 'var(--border-glow)' }}>
-                          {project.metrics}
+                        {project.featured && (
+                          <span className="glass-pill" style={{ 
+                            fontSize: '0.72rem', 
+                            padding: '4px 10px', 
+                            borderColor: '#f59e0b', 
+                            color: '#f59e0b',
+                            background: 'rgba(0,0,0,0.65)' 
+                          }}>
+                            <Star size={11} fill="#f59e0b" />
+                            <span>Featured</span>
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Year & Metrics Pill at bottom of image */}
+                      <div style={{ position: 'absolute', bottom: '12px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+                          {project.year}
                         </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Project Card Content */}
-                  <div style={{ padding: '20px 22px 0', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                    {/* Action Buttons directly below image */}
-                    <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
-                      {project.liveDemo && (
-                        <a 
-                          href={project.liveDemo} 
-                          target="_blank" 
-                          rel="noreferrer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            soundFx.playSuccess();
-                          }}
-                          className="glass-pill"
-                          style={{ textDecoration: 'none' }}
-                          title="Live Demo"
-                        >
-                          <ExternalLink size={14} />
-                          <span>Live</span>
-                        </a>
-                      )}
-                      {project.github && (
-                        <a 
-                          href={project.github} 
-                          target="_blank" 
-                          rel="noreferrer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            soundFx.playHover();
-                          }}
-                          className="glass-pill"
-                          style={{ textDecoration: 'none' }}
-                          title="GitHub Source"
-                        >
-                          <GithubIcon size={14} />
-                          <span>Code</span>
-                        </a>
-                      )}
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px', marginBottom: '8px' }}>
-                      <h3 style={{ fontSize: '1.3rem', fontWeight: 700 }}>
-                        {project.title}
-                      </h3>
-                      <div style={{ 
-                        width: '32px', 
-                        height: '32px', 
-                        borderRadius: '8px', 
-                        background: 'rgba(255, 255, 255, 0.05)', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center',
-                        color: 'var(--text-muted)',
-                        flexShrink: 0
-                      }}>
-                        <Maximize2 size={14} />
+                        {project.metrics && (
+                          <span className="badge-tag" style={{ color: 'var(--accent-primary)', borderColor: 'var(--border-glow)' }}>
+                            {project.metrics}
+                          </span>
+                        )}
                       </div>
                     </div>
 
-                    <p style={{ fontSize: '0.86rem', color: 'var(--text-dim)', marginBottom: '14px', fontWeight: 500 }}>
-                      {project.subtitle}
-                    </p>
+                    {/* Project Card Content */}
+                    <div style={{ padding: '24px 22px 0', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px', marginBottom: '8px' }}>
+                        <h3 style={{ fontSize: '1.3rem', fontWeight: 700 }}>
+                          {project.title}
+                        </h3>
+                        <div style={{ 
+                          width: '32px', 
+                          height: '32px', 
+                          borderRadius: '8px', 
+                          background: 'rgba(255, 255, 255, 0.05)', 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          justifyContent: 'center',
+                          color: 'var(--text-muted)',
+                          flexShrink: 0
+                        }}>
+                          <Maximize2 size={14} />
+                        </div>
+                      </div>
 
-                    <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px', flexGrow: 1 }}>
-                      {project.summary}
-                    </p>
+                      <p style={{ fontSize: '0.86rem', color: 'var(--text-dim)', marginBottom: '14px', fontWeight: 500 }}>
+                        {project.subtitle}
+                      </p>
 
-                    {/* Tech stack badges */}
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
-                      {project.tech.slice(0, 4).map((t, idx) => (
-                        <span key={idx} className="badge-tag">
-                          {t}
-                        </span>
-                      ))}
-                      {project.tech.length > 4 && (
-                        <span className="badge-tag" style={{ color: 'var(--text-dim)' }}>
-                          +{project.tech.length - 4} more
-                        </span>
-                      )}
+                      <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px', flexGrow: 1 }}>
+                        {project.summary}
+                      </p>
+
+                      {/* Tech stack badges */}
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+                        {project.tech.slice(0, 4).map((t, idx) => (
+                          <span key={idx} className="badge-tag">
+                            {t}
+                          </span>
+                        ))}
+                        {project.tech.length > 4 && (
+                          <span className="badge-tag" style={{ color: 'var(--text-dim)' }}>
+                            +{project.tech.length - 4} more
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Quick Card Footer Actions (Inside 3D space, for aesthetics) */}
+                  <div 
+                    style={{ padding: '0 22px 20px', position: 'relative', zIndex: 9999 }}
+                  >
+                    <div style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'space-between',
+                      paddingTop: '16px',
+                      borderTop: '1px solid rgba(255, 255, 255, 0.06)'
+                    }}>
+                      <span 
+                        style={{ 
+                          fontSize: '0.82rem', 
+                          fontWeight: 600, 
+                          color: 'var(--accent-primary)', 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: '4px',
+                          cursor: 'pointer'
+                        }}
+                        onClick={() => {
+                          soundFx.playOpen();
+                          onSelectProject(project);
+                        }}
+                      >
+                        <span>Explore Architecture</span>
+                        <ArrowUpRight size={14} />
+                      </span>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Quick Card Footer Actions (Outside Clickable Area) */}
-                <div 
-                  style={{ padding: '0 22px 20px', position: 'relative', zIndex: 9999 }}
-                  onMouseEnter={(e) => {
-                    setIsHoveringFooter(true);
-                    // Force the card to flatten out when hovering the footer to fix 3D hit-testing bugs
-                    const inner = e.currentTarget.closest('.tilt-card-wrapper')?.querySelector('.tilt-card-inner');
-                    if (inner) {
-                      inner.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0px)';
-                    }
-                  }}
-                  onMouseLeave={() => setIsHoveringFooter(false)}
-                >
-                  <div style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'space-between',
-                    paddingTop: '16px',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.06)'
-                  }}>
-                    <span 
-                      style={{ 
-                        fontSize: '0.82rem', 
-                        fontWeight: 600, 
-                        color: 'var(--accent-primary)', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: '4px',
-                        cursor: 'pointer'
-                      }}
-                      onClick={() => {
-                        soundFx.playOpen();
-                        onSelectProject(project);
-                      }}
-                    >
-                      <span>Explore Architecture</span>
-                      <ArrowUpRight size={14} />
-                    </span>
-                  </div>
-                </div>
+              {/* Action Buttons Completely OUTSIDE 3D space (100% Hit-Testing Guarantee) */}
+              <div style={{ display: 'flex', gap: '12px' }}>
+                {project.liveDemo && (
+                  <a 
+                    href={project.liveDemo} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    onClick={() => soundFx.playSuccess()}
+                    className="btn-primary"
+                    style={{ flexGrow: 1, justifyContent: 'center', padding: '10px 16px', fontSize: '0.85rem' }}
+                    title="Live Demo"
+                  >
+                    <ExternalLink size={16} />
+                    <span>Live App</span>
+                  </a>
+                )}
+                {project.github && (
+                  <a 
+                    href={project.github} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    onClick={() => soundFx.playHover()}
+                    className="btn-secondary"
+                    style={{ flexGrow: 1, justifyContent: 'center', padding: '10px 16px', fontSize: '0.85rem' }}
+                    title="GitHub Source"
+                  >
+                    <GithubIcon size={16} />
+                    <span>Source Code</span>
+                  </a>
+                )}
               </div>
             </div>
           ))}
