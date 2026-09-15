@@ -73,6 +73,12 @@ export default function Hero({ onOpenTerminal }) {
       x: -(y / (rect.height / 2)) * 10,
       y: (x / (rect.width / 2)) * 10
     });
+    
+    // Update mouse coordinates for the spotlight effect
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    card.style.setProperty('--mouse-x', `${mouseX}px`);
+    card.style.setProperty('--mouse-y', `${mouseY}px`);
   };
 
   const handleCardMouseLeave = () => {
@@ -262,7 +268,7 @@ export default function Hero({ onOpenTerminal }) {
                 flexDirection: 'column',
                 alignItems: 'center',
                 textAlign: 'center',
-                overflow: 'visible'
+                overflow: 'hidden'
               }}
             >
               <div className="spotlight-overlay" />

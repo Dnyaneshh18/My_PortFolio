@@ -248,13 +248,16 @@ export default function Projects({ onSelectProject }) {
                       <ArrowUpRight size={14} />
                     </span>
 
-                    <div style={{ display: 'flex', gap: '8px' }} onClick={(e) => e.stopPropagation()}>
+                    <div style={{ display: 'flex', gap: '8px' }}>
                       {project.liveDemo && (
                         <a 
                           href={project.liveDemo} 
                           target="_blank" 
                           rel="noreferrer"
-                          onClick={() => soundFx.playSuccess()}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            soundFx.playSuccess();
+                          }}
                           className="glass-pill"
                           style={{ padding: '6px 10px', fontSize: '0.74rem' }}
                           title="Live Demo"
@@ -267,7 +270,10 @@ export default function Projects({ onSelectProject }) {
                           href={project.github} 
                           target="_blank" 
                           rel="noreferrer"
-                          onClick={() => soundFx.playHover()}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            soundFx.playHover();
+                          }}
                           className="glass-pill"
                           style={{ padding: '6px 10px', fontSize: '0.74rem' }}
                           title="GitHub Source"

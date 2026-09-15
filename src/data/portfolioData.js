@@ -100,6 +100,37 @@ export const portfolioData = {
 
   projects: [
     {
+      id: "civic-assist",
+      title: "CivicAssist — Intelligent Civic Engagement & Governance Platform",
+      subtitle: "AI-Powered Municipal Management",
+      year: "2026",
+      category: "Full-Stack / AI",
+      categoryKey: "ai",
+      featured: true,
+      rating: 5,
+      metrics: "Live Heatmap · AI Spam Guard",
+      tech: ["React.js", "Node.js", "Supabase", "Cloudinary", "Python", "PyTorch", "OpenAI CLIP", "DistilBERT", "Leaflet"],
+      image: "/projects/civic-assist.jpg",
+      gradient: "from-blue-500 via-indigo-500 to-purple-500",
+      accent: "#3b82f6",
+      icon: "Map",
+      summary: "AI-powered municipal management platform with live geocoding, spam detection, and department dispatching across Maharashtra.",
+      description: "An intelligent civic engagement and governance platform that streamlines reporting, AI verification, smart departmental dispatch, and civic analytics across Maharashtra. Features precise pinpoint geocoding with Leaflet maps, live multi-region heatmaps, and dual-modality AI (OpenAI CLIP + DistilBERT) to flag fake/spam complaints automatically.",
+      points: [
+        "Built end-to-end civic reporting platform with interactive Leaflet maps for high-accuracy street and campus geocoding.",
+        "Developed dual-modality AI (OpenAI CLIP + DistilBERT) to analyze image relevance and text veracity, automatically flagging fake complaints.",
+        "Implemented live multi-region civic heatmaps for Maharashtra (Mumbai MMR, Pune, PCMC) with real-time issue clustering and risk rankings.",
+        "Engineered dedicated department portals for dispatch workflows, allowing field officers to use 1-click Google Maps navigation and upload on-site photographic proof."
+      ],
+      engineeringHighlights: [
+        { title: "AI Authenticity Guard", desc: "Dual-modality AI (CLIP + DistilBERT) analyzing image and text to detect spam." },
+        { title: "Dynamic Heatmaps", desc: "Real-time issue clustering and area risk rankings across multiple regions." },
+        { title: "Resolution Proof Workflow", desc: "Department Heads upload on-site photographic proof verified by Central Admin." }
+      ],
+      github: "https://github.com/Dnyaneshh18",
+      liveDemo: "https://civic-assist-platform-main.vercel.app/"
+    },
+    {
       id: "codementor-ai",
       title: "CodeMentorAI",
       subtitle: "AI Coding Learning Platform with Guided Feedback",
