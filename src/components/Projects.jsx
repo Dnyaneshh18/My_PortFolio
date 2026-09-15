@@ -121,112 +121,118 @@ export default function Projects({ onSelectProject }) {
                   flexDirection: 'column',
                   borderRadius: 'var(--radius-lg)',
                   overflow: 'hidden',
-                  cursor: 'pointer',
                   border: project.featured ? '1px solid rgba(99, 102, 241, 0.35)' : '1px solid var(--border-subtle)'
-                }}
-                onClick={() => {
-                  soundFx.playOpen();
-                  onSelectProject(project);
                 }}
               >
                 <div className="spotlight-overlay" />
                 <div className="shimmer-sweep" />
 
-                {/* Project Image Thumbnail */}
-                <div style={{ position: 'relative', height: '210px', overflow: 'hidden', background: '#0a0f1e' }}>
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      transition: 'transform 0.5s ease'
-                    }}
-                  />
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(to top, rgba(14, 21, 38, 0.95) 0%, rgba(14, 21, 38, 0.3) 60%, transparent 100%)'
-                  }} />
+                {/* Main Clickable Area (Opens Modal) */}
+                <div 
+                  onClick={() => {
+                    soundFx.playOpen();
+                    onSelectProject(project);
+                  }}
+                  style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', flexGrow: 1 }}
+                >
+                  {/* Project Image Thumbnail */}
+                  <div style={{ position: 'relative', height: '210px', overflow: 'hidden', background: '#0a0f1e' }}>
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'transform 0.5s ease'
+                      }}
+                    />
+                    <div style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: 'linear-gradient(to top, rgba(14, 21, 38, 0.95) 0%, rgba(14, 21, 38, 0.3) 60%, transparent 100%)'
+                    }} />
 
-                  {/* Top Badges */}
-                  <div style={{ position: 'absolute', top: '14px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span className="glass-pill" style={{ fontSize: '0.72rem', padding: '4px 10px', background: 'rgba(0, 0, 0, 0.65)' }}>
-                      {project.category}
-                    </span>
-
-                    {project.featured && (
-                      <span className="glass-pill" style={{ 
-                        fontSize: '0.72rem', 
-                        padding: '4px 10px', 
-                        borderColor: '#f59e0b', 
-                        color: '#f59e0b',
-                        background: 'rgba(0,0,0,0.65)' 
-                      }}>
-                        <Star size={11} fill="#f59e0b" />
-                        <span>Featured</span>
+                    {/* Top Badges */}
+                    <div style={{ position: 'absolute', top: '14px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span className="glass-pill" style={{ fontSize: '0.72rem', padding: '4px 10px', background: 'rgba(0, 0, 0, 0.65)' }}>
+                        {project.category}
                       </span>
-                    )}
-                  </div>
 
-                  {/* Year & Metrics Pill at bottom of image */}
-                  <div style={{ position: 'absolute', bottom: '12px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                      {project.year}
-                    </span>
-                    {project.metrics && (
-                      <span className="badge-tag" style={{ color: 'var(--accent-primary)', borderColor: 'var(--border-glow)' }}>
-                        {project.metrics}
+                      {project.featured && (
+                        <span className="glass-pill" style={{ 
+                          fontSize: '0.72rem', 
+                          padding: '4px 10px', 
+                          borderColor: '#f59e0b', 
+                          color: '#f59e0b',
+                          background: 'rgba(0,0,0,0.65)' 
+                        }}>
+                          <Star size={11} fill="#f59e0b" />
+                          <span>Featured</span>
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Year & Metrics Pill at bottom of image */}
+                    <div style={{ position: 'absolute', bottom: '12px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+                        {project.year}
                       </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Project Card Content */}
-                <div style={{ padding: '24px 22px 20px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px', marginBottom: '8px' }}>
-                    <h3 style={{ fontSize: '1.3rem', fontWeight: 700 }}>
-                      {project.title}
-                    </h3>
-                    <div style={{ 
-                      width: '32px', 
-                      height: '32px', 
-                      borderRadius: '8px', 
-                      background: 'rgba(255, 255, 255, 0.05)', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center',
-                      color: 'var(--text-muted)',
-                      flexShrink: 0
-                    }}>
-                      <Maximize2 size={14} />
+                      {project.metrics && (
+                        <span className="badge-tag" style={{ color: 'var(--accent-primary)', borderColor: 'var(--border-glow)' }}>
+                          {project.metrics}
+                        </span>
+                      )}
                     </div>
                   </div>
 
-                  <p style={{ fontSize: '0.86rem', color: 'var(--text-dim)', marginBottom: '14px', fontWeight: 500 }}>
-                    {project.subtitle}
-                  </p>
+                  {/* Project Card Content */}
+                  <div style={{ padding: '24px 22px 0', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px', marginBottom: '8px' }}>
+                      <h3 style={{ fontSize: '1.3rem', fontWeight: 700 }}>
+                        {project.title}
+                      </h3>
+                      <div style={{ 
+                        width: '32px', 
+                        height: '32px', 
+                        borderRadius: '8px', 
+                        background: 'rgba(255, 255, 255, 0.05)', 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        color: 'var(--text-muted)',
+                        flexShrink: 0
+                      }}>
+                        <Maximize2 size={14} />
+                      </div>
+                    </div>
 
-                  <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px', flexGrow: 1 }}>
-                    {project.summary}
-                  </p>
+                    <p style={{ fontSize: '0.86rem', color: 'var(--text-dim)', marginBottom: '14px', fontWeight: 500 }}>
+                      {project.subtitle}
+                    </p>
 
-                  {/* Tech stack badges */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
-                    {project.tech.slice(0, 4).map((t, idx) => (
-                      <span key={idx} className="badge-tag">
-                        {t}
-                      </span>
-                    ))}
-                    {project.tech.length > 4 && (
-                      <span className="badge-tag" style={{ color: 'var(--text-dim)' }}>
-                        +{project.tech.length - 4} more
-                      </span>
-                    )}
+                    <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px', flexGrow: 1 }}>
+                      {project.summary}
+                    </p>
+
+                    {/* Tech stack badges */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+                      {project.tech.slice(0, 4).map((t, idx) => (
+                        <span key={idx} className="badge-tag">
+                          {t}
+                        </span>
+                      ))}
+                      {project.tech.length > 4 && (
+                        <span className="badge-tag" style={{ color: 'var(--text-dim)' }}>
+                          +{project.tech.length - 4} more
+                        </span>
+                      )}
+                    </div>
                   </div>
+                </div>
 
-                  {/* Quick Card Footer Actions */}
+                {/* Quick Card Footer Actions (Outside Clickable Area) */}
+                <div style={{ padding: '0 22px 20px' }}>
                   <div style={{ 
                     display: 'flex', 
                     alignItems: 'center', 
@@ -241,7 +247,12 @@ export default function Projects({ onSelectProject }) {
                         color: 'var(--accent-primary)', 
                         display: 'flex', 
                         alignItems: 'center', 
-                        gap: '4px' 
+                        gap: '4px',
+                        cursor: 'pointer'
+                      }}
+                      onClick={() => {
+                        soundFx.playOpen();
+                        onSelectProject(project);
                       }}
                     >
                       <span>Explore Architecture</span>
@@ -254,11 +265,8 @@ export default function Projects({ onSelectProject }) {
                           href={project.liveDemo} 
                           target="_blank" 
                           rel="noreferrer"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
+                          onClick={() => {
                             soundFx.playSuccess();
-                            window.open(project.liveDemo, '_blank');
                           }}
                           className="glass-pill"
                           style={{ padding: '6px 12px', fontSize: '0.74rem', gap: '6px', zIndex: 10, position: 'relative' }}
@@ -273,11 +281,8 @@ export default function Projects({ onSelectProject }) {
                           href={project.github} 
                           target="_blank" 
                           rel="noreferrer"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
+                          onClick={() => {
                             soundFx.playHover();
-                            window.open(project.github, '_blank');
                           }}
                           className="glass-pill"
                           style={{ padding: '6px 12px', fontSize: '0.74rem', gap: '6px', zIndex: 10, position: 'relative' }}
