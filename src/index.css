@@ -355,7 +355,6 @@ h1, h2, h3, h4, .font-display {
 
 .tilt-card-inner {
   transition: transform 0.15s ease-out, box-shadow 0.2s ease;
-  transform-style: preserve-3d;
   position: relative;
   height: 100%;
 }

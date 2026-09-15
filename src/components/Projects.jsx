@@ -232,7 +232,7 @@ export default function Projects({ onSelectProject }) {
                 </div>
 
                 {/* Quick Card Footer Actions (Outside Clickable Area) */}
-                <div style={{ padding: '0 22px 20px' }}>
+                <div style={{ padding: '0 22px 20px', position: 'relative', zIndex: 9999 }}>
                   <div style={{ 
                     display: 'flex', 
                     alignItems: 'center', 
