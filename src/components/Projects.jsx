@@ -259,56 +259,34 @@ export default function Projects({ onSelectProject }) {
                       <ArrowUpRight size={14} />
                     </span>
 
-                    <div style={{ display: 'flex', gap: '8px', zIndex: 999, position: 'relative' }}>
+                    <div style={{ display: 'flex', gap: '8px' }}>
                       {project.liveDemo && (
-                        <button 
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            soundFx.playSuccess();
-                            window.open(project.liveDemo, '_blank', 'noopener,noreferrer');
-                          }}
+                        <a 
+                          href={project.liveDemo} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          onClick={() => soundFx.playSuccess()}
                           className="glass-pill"
-                          style={{ 
-                            padding: '6px 12px', 
-                            fontSize: '0.74rem', 
-                            gap: '6px',
-                            cursor: 'pointer',
-                            border: '1px solid rgba(255,255,255,0.2)',
-                            background: 'rgba(255,255,255,0.08)',
-                            color: '#fff',
-                            pointerEvents: 'auto'
-                          }}
+                          style={{ textDecoration: 'none' }}
                           title="Live Demo"
                         >
-                          <ExternalLink size={12} />
+                          <ExternalLink size={14} />
                           <span>Live</span>
-                        </button>
+                        </a>
                       )}
                       {project.github && (
-                        <button 
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            soundFx.playHover();
-                            window.open(project.github, '_blank', 'noopener,noreferrer');
-                          }}
+                        <a 
+                          href={project.github} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          onClick={() => soundFx.playHover()}
                           className="glass-pill"
-                          style={{ 
-                            padding: '6px 12px', 
-                            fontSize: '0.74rem', 
-                            gap: '6px',
-                            cursor: 'pointer',
-                            border: '1px solid rgba(255,255,255,0.2)',
-                            background: 'rgba(255,255,255,0.08)',
-                            color: '#fff',
-                            pointerEvents: 'auto'
-                          }}
+                          style={{ textDecoration: 'none' }}
                           title="GitHub Source"
                         >
-                          <GithubIcon size={12} />
+                          <GithubIcon size={14} />
                           <span>Code</span>
-                        </button>
+                        </a>
                       )}
                     </div>
                   </div>
