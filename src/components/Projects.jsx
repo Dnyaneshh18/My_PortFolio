@@ -192,7 +192,45 @@ export default function Projects({ onSelectProject }) {
                   </div>
 
                   {/* Project Card Content */}
-                  <div style={{ padding: '24px 22px 0', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                  <div style={{ padding: '20px 22px 0', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                    {/* Action Buttons directly below image */}
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+                      {project.liveDemo && (
+                        <a 
+                          href={project.liveDemo} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            soundFx.playSuccess();
+                          }}
+                          className="glass-pill"
+                          style={{ textDecoration: 'none' }}
+                          title="Live Demo"
+                        >
+                          <ExternalLink size={14} />
+                          <span>Live</span>
+                        </a>
+                      )}
+                      {project.github && (
+                        <a 
+                          href={project.github} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            soundFx.playHover();
+                          }}
+                          className="glass-pill"
+                          style={{ textDecoration: 'none' }}
+                          title="GitHub Source"
+                        >
+                          <GithubIcon size={14} />
+                          <span>Code</span>
+                        </a>
+                      )}
+                    </div>
+
                     <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px', marginBottom: '8px' }}>
                       <h3 style={{ fontSize: '1.3rem', fontWeight: 700 }}>
                         {project.title}
@@ -274,37 +312,6 @@ export default function Projects({ onSelectProject }) {
                       <span>Explore Architecture</span>
                       <ArrowUpRight size={14} />
                     </span>
-
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      {project.liveDemo && (
-                        <a 
-                          href={project.liveDemo} 
-                          target="_blank" 
-                          rel="noreferrer"
-                          onClick={() => soundFx.playSuccess()}
-                          className="glass-pill"
-                          style={{ textDecoration: 'none' }}
-                          title="Live Demo"
-                        >
-                          <ExternalLink size={14} />
-                          <span>Live</span>
-                        </a>
-                      )}
-                      {project.github && (
-                        <a 
-                          href={project.github} 
-                          target="_blank" 
-                          rel="noreferrer"
-                          onClick={() => soundFx.playHover()}
-                          className="glass-pill"
-                          style={{ textDecoration: 'none' }}
-                          title="GitHub Source"
-                        >
-                          <GithubIcon size={14} />
-                          <span>Code</span>
-                        </a>
-                      )}
-                    </div>
                   </div>
                 </div>
               </div>
