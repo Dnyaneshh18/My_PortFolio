@@ -259,12 +259,9 @@ export default function Projects({ onSelectProject }) {
                       <ArrowUpRight size={14} />
                     </span>
 
-                    <div style={{ display: 'flex', gap: '8px' }}>
+                    <div style={{ display: 'flex', gap: '8px', zIndex: 999, position: 'relative' }}>
                       {project.liveDemo && (
-                        <a 
-                          href={project.liveDemo} 
-                          target="_blank" 
-                          rel="noreferrer"
+                        <button 
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
@@ -275,22 +272,21 @@ export default function Projects({ onSelectProject }) {
                           style={{ 
                             padding: '6px 12px', 
                             fontSize: '0.74rem', 
-                            gap: '6px', 
-                            zIndex: 100, 
-                            position: 'relative',
-                            transform: 'translateZ(30px)'
+                            gap: '6px',
+                            cursor: 'pointer',
+                            border: '1px solid rgba(255,255,255,0.2)',
+                            background: 'rgba(255,255,255,0.08)',
+                            color: '#fff',
+                            pointerEvents: 'auto'
                           }}
                           title="Live Demo"
                         >
                           <ExternalLink size={12} />
                           <span>Live</span>
-                        </a>
+                        </button>
                       )}
                       {project.github && (
-                        <a 
-                          href={project.github} 
-                          target="_blank" 
-                          rel="noreferrer"
+                        <button 
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
@@ -301,16 +297,18 @@ export default function Projects({ onSelectProject }) {
                           style={{ 
                             padding: '6px 12px', 
                             fontSize: '0.74rem', 
-                            gap: '6px', 
-                            zIndex: 100, 
-                            position: 'relative',
-                            transform: 'translateZ(30px)'
+                            gap: '6px',
+                            cursor: 'pointer',
+                            border: '1px solid rgba(255,255,255,0.2)',
+                            background: 'rgba(255,255,255,0.08)',
+                            color: '#fff',
+                            pointerEvents: 'auto'
                           }}
                           title="GitHub Source"
                         >
                           <GithubIcon size={12} />
                           <span>Code</span>
-                        </a>
+                        </button>
                       )}
                     </div>
                   </div>
