@@ -265,11 +265,21 @@ export default function Projects({ onSelectProject }) {
                           href={project.liveDemo} 
                           target="_blank" 
                           rel="noreferrer"
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
                             soundFx.playSuccess();
+                            window.open(project.liveDemo, '_blank', 'noopener,noreferrer');
                           }}
                           className="glass-pill"
-                          style={{ padding: '6px 12px', fontSize: '0.74rem', gap: '6px', zIndex: 10, position: 'relative' }}
+                          style={{ 
+                            padding: '6px 12px', 
+                            fontSize: '0.74rem', 
+                            gap: '6px', 
+                            zIndex: 100, 
+                            position: 'relative',
+                            transform: 'translateZ(30px)'
+                          }}
                           title="Live Demo"
                         >
                           <ExternalLink size={12} />
@@ -281,11 +291,21 @@ export default function Projects({ onSelectProject }) {
                           href={project.github} 
                           target="_blank" 
                           rel="noreferrer"
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
                             soundFx.playHover();
+                            window.open(project.github, '_blank', 'noopener,noreferrer');
                           }}
                           className="glass-pill"
-                          style={{ padding: '6px 12px', fontSize: '0.74rem', gap: '6px', zIndex: 10, position: 'relative' }}
+                          style={{ 
+                            padding: '6px 12px', 
+                            fontSize: '0.74rem', 
+                            gap: '6px', 
+                            zIndex: 100, 
+                            position: 'relative',
+                            transform: 'translateZ(30px)'
+                          }}
                           title="GitHub Source"
                         >
                           <GithubIcon size={12} />
