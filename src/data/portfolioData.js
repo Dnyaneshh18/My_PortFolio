@@ -127,7 +127,7 @@ export const portfolioData = {
         { title: "Dynamic Heatmaps", desc: "Real-time issue clustering and area risk rankings across multiple regions." },
         { title: "Resolution Proof Workflow", desc: "Department Heads upload on-site photographic proof verified by Central Admin." }
       ],
-      github: "https://github.com/Dnyaneshh18",
+      github: "https://github.com/Dnyaneshh18/My_PortFolio",
       liveDemo: "https://civic-assist-platform-main.vercel.app/"
     },
     {

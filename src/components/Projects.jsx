@@ -259,10 +259,11 @@ export default function Projects({ onSelectProject }) {
                             soundFx.playSuccess();
                           }}
                           className="glass-pill"
-                          style={{ padding: '6px 10px', fontSize: '0.74rem' }}
+                          style={{ padding: '6px 12px', fontSize: '0.74rem', gap: '6px' }}
                           title="Live Demo"
                         >
                           <ExternalLink size={12} />
+                          <span>Live</span>
                         </a>
                       )}
                       {project.github && (
@@ -275,10 +276,11 @@ export default function Projects({ onSelectProject }) {
                             soundFx.playHover();
                           }}
                           className="glass-pill"
-                          style={{ padding: '6px 10px', fontSize: '0.74rem' }}
+                          style={{ padding: '6px 12px', fontSize: '0.74rem', gap: '6px' }}
                           title="GitHub Source"
                         >
                           <GithubIcon size={12} />
+                          <span>Code</span>
                         </a>
                       )}
                     </div>
