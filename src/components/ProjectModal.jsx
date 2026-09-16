@@ -5,6 +5,9 @@ import { soundFx } from '../utils/soundEffects';
 
 export default function ProjectModal({ project, onClose }) {
   useEffect(() => {
+    // Prevent background scrolling when modal is open
+    document.body.style.overflow = 'hidden';
+
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         soundFx.playClose();
@@ -12,7 +15,12 @@ export default function ProjectModal({ project, onClose }) {
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      // Restore background scrolling
+      document.body.style.overflow = 'unset';
+    };
   }, [onClose]);
 
   if (!project) return null;
@@ -27,7 +35,7 @@ export default function ProjectModal({ project, onClose }) {
         }
       }}
     >
-      <div className="modal-content" style={{ padding: '0', overflow: 'hidden' }}>
+      <div className="modal-content" style={{ padding: '0', overflowY: 'auto', overflowX: 'hidden' }}>
         {/* Modal Banner Image */}
         <div style={{ position: 'relative', width: '100%', maxHeight: '340px', overflow: 'hidden' }}>
           <img 
