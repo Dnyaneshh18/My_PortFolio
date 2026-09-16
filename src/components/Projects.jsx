@@ -25,33 +25,7 @@ export default function Projects({ onSelectProject }) {
     ? projects 
     : projects.filter(p => p.categoryKey === activeFilter);
 
-  // Tilt card hover handler
-  const handleMouseMove = (e) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
 
-    card.style.setProperty('--mouse-x', `${x}px`);
-    card.style.setProperty('--mouse-y', `${y}px`);
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const tiltX = -((y - centerY) / centerY) * 7;
-    const tiltY = ((x - centerX) / centerX) * 7;
-
-    const inner = card.querySelector('.tilt-card-inner');
-    if (inner) {
-      inner.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
-    }
-  };
-
-  const handleMouseLeave = (e) => {
-    const inner = e.currentTarget.querySelector('.tilt-card-inner');
-    if (inner) {
-      inner.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0px)';
-    }
-  };
 
   return (
     <section id="projects" className="section-spacing">
@@ -111,14 +85,9 @@ export default function Projects({ onSelectProject }) {
           {filteredProjects.map((project) => (
             <div key={project.id} style={{ display: 'flex', flexDirection: 'column', gap: '12px', height: '100%' }}>
               
-              <div
-                className="tilt-card-wrapper"
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{ flexGrow: 1 }}
-              >
+              <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                 <div 
-                  className="glass tilt-card-inner"
+                  className="glass"
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
