@@ -357,34 +357,7 @@ export default function Hero({ onOpenTerminal }) {
                 </div>
               </div>
 
-              {/* Terminal Quick Prompt */}
-              <div 
-                onClick={() => {
-                  soundFx.playClick();
-                  onOpenTerminal();
-                }}
-                style={{
-                  marginTop: '18px',
-                  width: '100%',
-                  background: 'rgba(99, 102, 241, 0.08)',
-                  border: '1px dashed rgba(99, 102, 241, 0.3)',
-                  borderRadius: '12px',
-                  padding: '8px 14px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
-                  fontSize: '0.78rem',
-                  color: 'var(--text-muted)',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Terminal size={14} style={{ color: 'var(--accent-primary)' }} />
-                  <span>Interactive Terminal</span>
-                </div>
-                <span className="font-mono" style={{ color: 'var(--accent-primary)', fontSize: '0.72rem' }}>$ dnyaneshwar --help</span>
-              </div>
+
             </div>
           </div>
         </div>
