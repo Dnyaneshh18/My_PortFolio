@@ -227,7 +227,23 @@ export default function Projects({ onSelectProject }) {
                           </span>
                         ))}
                         {project.tech.length > 4 && (
-                          <span className="badge-tag" style={{ color: 'var(--text-dim)' }}>
+                          <span 
+                            className="badge-tag" 
+                            style={{ 
+                              color: 'var(--accent-primary)',
+                              borderColor: 'var(--border-glow)',
+                              background: 'rgba(99, 102, 241, 0.08)',
+                              cursor: 'pointer',
+                              transition: 'background 0.2s ease'
+                            }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              soundFx.playOpen();
+                              onSelectProject(project);
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(99, 102, 241, 0.15)'}
+                            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(99, 102, 241, 0.08)'}
+                          >
                             +{project.tech.length - 4} more
                           </span>
                         )}
